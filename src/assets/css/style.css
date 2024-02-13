@@ -1,0 +1,257 @@
+:root{
+    --black: rgb(0,0,0);
+    --light-color: #666;
+    --box-shadow: 0 .3rem 0.3rem rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+.navbar {
+    box-shadow: var(--box-shadow);
+}
+.navbar a{
+    color: black;
+}
+
+.navbar .navbar-brand {
+    font-size: 1.6rem;
+    font-weight: bolder;
+}
+
+.navbar .navbar-brand:hover {
+    color: black;
+}
+
+.navbar .navbar-toggler {
+    cursor: pointer;
+    color: black;
+    font-size: 1.5rem;
+}
+
+.navbar .navbar-toggler:focus{
+    box-shadow: none;
+}
+
+.navbar .navbar-nav {
+    margin-left: auto;
+}
+
+.navbar .navbar-nav .nav-item a{
+    color: black;
+}
+
+
+.navbar .navbar-nav .cart {
+    cursor: pointer;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+
+}
+
+
+.navbar .navbar-nav .cart a:hover {
+    color: black;
+
+}
+
+.navbar .navbar-nav .nav-edit {
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+
+.navbar .navbar-nav .nav-sign {
+    color: white;
+    background-color: #31AC18;
+    border-radius: 10px;
+
+}
+
+
+.navbar .navbar-nav .nav-loging {
+    border: 1.5px solid #31AC18;
+    border-radius: 10px;
+    color: black;
+}
+
+
+
+
+
+.card1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.125);
+    border-radius: 10px;
+}
+
+.card1 .card-body .form-control {
+    border-radius: 10px;
+    border: gray solid 1.4px;
+}
+
+
+.card1 .card-body .btn {
+    background-color: #31AC18;
+    font-weight: light;
+    font-size: 9px;
+    color: white;
+    padding-left: 5.5rem;
+    padding-right: 5.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 10px;
+}
+
+.card1 .card-body .xmark {
+    padding-left: 95%;
+}
+
+.card1 .card-body .bottom {
+    font-size: 90%;
+}
+.card1 .card-body .nav-link {
+    color: black;
+    text-decoration: underline;
+}
+
+
+.card1 .card-body .sign {
+    color: #31AC18;
+}
+
+
+.card1 .card-body .labelCB {
+    font-size: 0.87rem;
+}
+
+
+
+.landing .container {
+    margin-top: 9rem;
+    height: 43rem;
+}
+
+.landing .container h3{
+    text-shadow: rgba(0, 0, 0, 0.125);
+    font-size: 3.5rem;
+    padding-top: 9rem;
+}
+
+.landing .container p{
+    padding-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.landing .container .find-meals {
+    width: 13rem;
+    align-self: center;
+}
+
+.landing .container .find-meals a{
+    background-color: #31AC18;
+    font-weight: light;
+    font-size: 1.5rem;
+    color: white;
+    padding-left: 5.5rem;
+    padding-right: 5.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 10px;
+}
+
+.landing-2 .container h1{
+    text-align: center;
+    padding-top: 8rem;
+    font-size: 3.8rem;
+}
+
+.landing-2 .container p{
+    text-align: center;
+    padding-top: 1rem;
+    font-size: 1.4rem;
+    color: #656565;
+}
+
+
+
+
+.landing-4 .container h2 {
+    text-align: center;
+    padding-top: 10rem;
+    font-size: 4rem;
+}
+
+.landing-4 .container .card {
+    padding-top: 5rem;
+    text-align: center;
+    border: none;
+}
+
+.landing-4-1 .container .explore {
+    display: grid;
+    width: 13rem;
+    align-self: center;
+}
+
+.landing-4-1 .container .explore a{
+    background-color: #31AC18;
+    font-weight: light;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 10px;
+}
+
+
+
+.landing-5 .container h3{
+    text-align: center;
+    padding-top: 8rem;
+    font-size: 3rem;
+    color: #656565;
+}
+
+.landing-5 .container h1{
+    text-align: center;
+    padding-top: .2rem;
+    font-size: 4.2rem;
+    padding-bottom: 4rem;
+}
+
+
+.landing-6 .container .carousel-inner {
+    height: 25rem;
+    text-align: center;
+}
+
+.landing-6 .container .carousel-item .star-ratings {
+    font-size: 1.4rem;
+    padding-bottom: 1rem;
+}
+
+.landing-6 .container .carousel-item .text-ratings {
+    font-size: 1.3rem;
+}
+
+.landing-6 .container .carousel-item .text {
+    padding-bottom: 8rem;
+}
+
+.landing-6 .container .carousel-item .carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 0.1rem;
+    top: 0.5rem;
+    left: 15%;
+    padding-top: 5rem;
+    padding-bottom: 0.1rem;
+    color: #fff;
+    text-align: center;
+}

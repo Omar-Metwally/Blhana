@@ -1,0 +1,192 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-icon {
+    margin-right: 0px !important;
+    vertical-align: middle;
+  }*/
+  
+  /*@use '@angular/material' as mat;
+  @include mat.core();
+  $my-primary: mat.define-palette(mat.$green-palette, 500);
+  $my-accent: mat.define-palette(mat.$grey-palette, A200, A100, A400);
+
+  // The "warn" palette is optional and defaults to red if not specified.
+  $my-warn: mat.define-palette(mat.$red-palette);
+
+  $my-theme: mat.define-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+  density: 0,
+  ));
+
+// Emit theme-dependent styles for common features used across multiple components.
+//@include angular-material-theme($my-theme);
+@include mat.core();
+@include mat.core-theme($my-theme);
+@include mat.button-theme($my-theme);*/
+
+
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$my-app-primary: mat.define-palette(mat.$green-palette);
+$my-app-accent: mat.define-palette(mat.$grey-palette);
+$my-app-warn: mat.define-palette(mat.$red-palette);
+
+$my-app-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-app-primary,
+      accent: $my-app-accent,
+      warn: $my-app-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($my-app-theme);
+
+
+.btn{
+  box-shadow: none !important;
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar {
+    width: 12px; /* You can adjust the width as needed */
+  }
+  
+  /* Style the scrollbar handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: #4CAF50; /* Set the color you want */
+    border-radius: 6px; /* Adjust the border-radius as needed */
+  }
+  
+  /* Style the scrollbar track on hover */
+  ::-webkit-scrollbar-track:hover {
+    background-color: #ddd; /* Set the hover color */
+  }
+  
+  /* Style the scrollbar handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Set the hover color for the handle */
+  }
+  .mdc-dialog__surface{
+    border-radius: 10px !important;
+    
+
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white !important;
+  border-radius: 5px;
+}
+
+*{
+  line-height: normal;
+}
+// .mat-step-icon{
+//   line-height: 0;
+// }
+.btn{
+    border-radius: 10px !important;
+}
+  :root{
+    --black: rgb(0,0,0);
+    --light-color: #666;
+    --box-shadow: 0 .3rem 0.3rem rgba(0, 0, 0, 0.1);
+}
+
+.card1 {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    background-clip: border-box;
+}
+
+
+.card1 .card-body .btn {
+    background-color: #31AC18;
+    font-weight: light;
+    color: white;
+    padding-left: 5.5rem;
+    padding-right: 5.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 20px;
+}
+
+.card1 .card-body .bottom {
+    font-size: 90%;
+}
+.card1 .card-body .nav-link {
+    color: black;
+    text-decoration: underline;
+}
+
+
+.card1 .card-body .sign {
+    color: #31AC18;
+}
+
+.ng-valid{
+    --mdc-outlined-text-field-focus-outline-color: #31AC18 !important;
+    --mdc-outlined-text-field-focus-label-text-color: #31AC18 !important;
+    --mdc-outlined-text-field-outline-color: #31AC18 !important;
+    --mdc-outlined-text-field-label-text-color: #31AC18 !important;
+
+}
+.ng-untouched{
+    --mdc-outlined-text-field-caret-color:grey !important;
+    --mdc-outlined-text-field-focus-outline-color:grey !important;
+    --mdc-outlined-text-field-focus-label-text-color:grey !important;
+    --mdc-filled-text-field-caret-color:grey !important;
+    --mdc-filled-text-field-focus-active-indicator-color: grey !important;
+    --mdc-filled-text-field-focus-label-text-color: grey !important;
+    --mdc-outlined-text-field-focus-label-text-color:grey !important;
+    --mdc-outlined-text-field-focus-outline-color:grey !important;
+}
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 10px;
+}
+.mdc-dialog,
+.mdc-dialog__scrim {
+   height: auto !important;
+}
+.mat-mdc-dialog-container,
+.mat-mdc-dialog-container .mdc-dialog__container,
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  max-height: none !important;
+}
+
+ .carousel-control-next-icon{
+  background-image: url('/assets/images/next-icon.svg') !important;
+ }
+
+ .carousel-control-prev-icon{
+  background-image: url('/assets/images/prev-icon.svg') !important;
+ }
+
+ .carousel-indicators button
+{
+
+  background-color: #4CAF50 !important;
+  width : 8px!important;
+  height: 8px !important;
+  border-radius: 100%;
+  margin: 5px !important;
+}
+.mat-mdc-text-field-wrapper{
+  background-color: white;
+  border-radius: 10px !important;
+}
+// .mdc-notched-outline .mdc-notched-outline__leading,
+// .mdc-notched-outline .mdc-notched-outline__trailing {
+//   background-color: white;
+//   border-radius: 10px;
+// }

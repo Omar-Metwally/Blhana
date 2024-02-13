@@ -1,0 +1,40 @@
+<form [formGroup]="signupForm" (ngSubmit)="signup()" autocomplete="off">
+    <div class="card1">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-2 fs-4 ps-2 pb-2 pe-0">
+                <h2 class="mb-0">Signup</h2>
+                <button type="button" tabindex="-1" class="mb-0" mat-icon-button matSuffix (click)="closeSignupPopUp()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <img class="mb-2" style="width: 100%;" src="/assets/images/dicount.svg" alt="My Happy SVG" />
+            <div class="d-flex justify-content-between mt-3 mb-2">
+                <app-input class="me-1" [control]="firstName" type="text" placeholder="Hoda" label="First Name"></app-input>
+                <app-input class="ms-1" [control]="lastName" type="text" placeholder="Khaled" label="Last Name"></app-input>
+            </div>
+            <div class="mb-2">
+                <app-input [control]="email" style="width: 100%;" type="email" placeholder="user@example.com" icon="alternate_email" label="Email"></app-input>
+            </div>
+            <div class="mb-2">
+                <app-input [control]="password" style="width: 100%;" type="password" label="Password"></app-input>
+            </div>
+
+            <div class="form-floatin" *ngIf="errorMessages.length > 0">
+                <app-validation-messages [errorMessages]="errorMessages"></app-validation-messages>
+                <a class="btn btn-link" (click)="resendEmailConfirmationLink()"
+                    *ngIf="errorMessages[0].includes('Please confirm your email')">
+                    Click here to resend email confirmation link in case you didn't receive it.
+                </a>
+            </div>
+            <mat-checkbox class="example-margin mb-3">
+                By Pressing "Sign up" you agree to BlHana Terms of Service, Privacy Policy.
+            </mat-checkbox>
+            <button type="submit" style="width: 100%;" class="btn mb-2 p-3 fs-5">Signup</button>
+            <div class="text-center">
+
+                <div class="d-lg-block bottom"> Already Have an Account? <a href="#" class="d-lg-inline sign">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

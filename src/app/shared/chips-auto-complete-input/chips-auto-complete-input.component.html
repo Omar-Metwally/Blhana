@@ -1,0 +1,22 @@
+<mat-form-field class="me-1" style="width: 100%;" appearance="outline" required="true">
+  <mat-label>{{label}}</mat-label>
+  <mat-chip-grid #chipGrid aria-label="Tag selection" [formControl]="control">
+    @for (option of SelectedOptions; track option) {
+    <mat-chip-row [value]="option" (removed)="remove(option)">
+      {{option.name}}
+      <button matChipRemove [attr.aria-label]="'remove ' + option">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+    }
+  </mat-chip-grid>
+  <input placeholder="New Tag..." #input [formControl]="control" [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+    [placeholder]="placeholder"
+    [type]="type" matInput (input)="filter()" (focus)="filter()" />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    @for (option of filteredOptions ; track option) {
+    <mat-option [value]="option">{{option.name}}</mat-option>
+    }
+  </mat-autocomplete>
+  <mat-error>You have to select at least one Option</mat-error>
+</mat-form-field>

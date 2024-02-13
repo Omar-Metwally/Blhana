@@ -1,0 +1,12 @@
+div {
+    color: #fff;
+    background-color: #cdcdcf;
+    border-color: #cdcdcf;
+    border-style: solid;
+}
+div:hover {
+    color: #fff;
+    background-color: #b0afb3;
+    border-color: #b0afb3;
+    border-style: solid;
+}

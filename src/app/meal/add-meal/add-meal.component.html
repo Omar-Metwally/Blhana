@@ -1,0 +1,114 @@
+<form [formGroup]="addMealForm">
+
+</form>
+
+<!-- <mat-stepper orientation="vertical">
+    <mat-step>
+      <ng-template matStepLabel>Step 1</ng-template>
+      <ng-template matStepContent>
+        <p>This content was rendered lazily</p>
+        <button mat-button matStepperNext>Next</button>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Step 2</ng-template>
+      <ng-template matStepContent>
+        <p>This content was also rendered lazily</p>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Step 3</ng-template>
+      <p>This content was rendered eagerly</p>
+      <button mat-button matStepperPrevious>Back</button>
+    </mat-step>
+  </mat-stepper> -->
+
+<mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!" [linear]="true"
+    labelPosition="bottom">
+    <mat-step [optional]="false" [completed]="isMealAdded" label="">
+        <ng-template matStepLabel>Dish Profile</ng-template>
+        <ng-template matStepContent>
+            <form [formGroup]="addMealForm" (ngSubmit)="mealForm()">
+                <app-input class="me-1" [control]="title" type="text" label="Dish Title"></app-input>
+                <app-select-input [control]="category" type="text" placeholder="Category" label="Category"
+                    [options]="categoryOptions"></app-select-input>
+                <app-select-input [control]="spiceLevel" type="text" placeholder="Spice Level" label="Spice Level"
+                    [options]="spiceLevelOptions"></app-select-input>
+                <app-chips-auto-complete-input [control]="tags" type="text" label="Tags"
+                    [options]="tagsOptions"></app-chips-auto-complete-input>
+                <mat-form-field style="width: 100%;" appearance="outline">
+                    <mat-label>Message</mat-label>
+                    <textarea [formControl]="description" matInput #message maxlength="256"
+                        placeholder="Ex. I need help with..."></textarea>
+                    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                </mat-form-field>
+                <div>
+                    <button type="submit" mat-button matStepperNext *ngIf="!isMealAdded">Add Meal</button>
+                    <button type="submit" mat-button matStepperNext *ngIf="isMealAdded">Edit Meal</button>
+                </div>
+            </form>
+        </ng-template>
+    </mat-step>
+    <mat-step [stepControl]="addMealOptionForm" label="">
+        <ng-template matStepLabel>Dish Options</ng-template>
+        <ng-template matStepContent>
+            <form [formGroup]="addMealOptionForm" (ngSubmit)="mealOptionForm()">
+
+                <input [formControl]="mealSize" [value]="0" type="radio" class="btn-check" name="meal-size" id="small"
+                    #small autocomplete="off" checked>
+                <label class="btn " for="small">Small</label>
+
+                <input [formControl]="mealSize" [value]="1" type="radio" class="btn-check" name="meal-size" id="medium"
+                    #medium autocomplete="off">
+                <label class="btn " for="medium">Medium</label>
+
+                <input [formControl]="mealSize" [value]="2" type="radio" class="btn-check" name="meal-size" id="large"
+                    #large autocomplete="off">
+                <label class="btn " for="large">Large</label>
+
+                <app-input class="me-1" [control]="price" placeholder="Enter The Price" type="number" format="9999"
+                    label="Price"></app-input>
+
+                <input class="me-1" [formControl]="saveQuantitySetting" [value]="true" type="radio" class="btn-check"
+                    name="save-quantity-setting" id="save-quantity-setting" autocomplete="off">
+                <label class="btn" for="save-quantity-setting">Yes</label>
+
+                <input [formControl]="saveQuantitySetting" [value]="false" type="radio" class="btn-check"
+                    name="save-quantity-setting" id="not-save-quantity-setting" autocomplete="off">
+                <label class="btn" for="not-save-quantity-setting">No</label>
+
+                <input class="me-1" [formControl]="isAvailable" (click)="toggleQuantityInput(true)" [value]="true"
+                    type="radio" class="btn-check" name="is-available" id="available" autocomplete="off">
+                <label class="btn" for="available">Yes</label>
+
+                <input [formControl]="isAvailable" (click)="toggleQuantityInput(false)" [value]="false" type="radio"
+                    class="btn-check" name="is-available" id="not-available" autocomplete="off">
+                <label class="btn" for="not-available">No</label>
+
+                <app-input class="me-1" class="me-1" [control]="quantity" type="number" format="999"
+                    label="Available quantity"></app-input>
+
+                <app-file-input [control]="image"></app-file-input>
+                <div [ngSwitch]="mealSize.value">
+                    <button mat-button matStepperNext *ngSwitchCase="0">
+                        {{ isSmallMealOptionAdded ? 'Edit Meal Option' : 'Add Meal Option' }}
+                    </button>
+                    <button mat-button matStepperNext *ngSwitchCase="1">
+                        {{ isMediumMealOptionAdded ? 'Edit Meal Option' : 'Add Meal Option' }}
+                    </button>
+                    <button mat-button matStepperNext *ngSwitchCase="2">
+                        {{ isLargeMealOptionAdded ? 'Edit Meal Option' : 'Add Meal Option' }}
+                    </button>
+                    <button mat-button matStepperNext *ngSwitchDefault>
+                        Add Meal Option
+                    </button>
+                    <button mat-button matStepperPrevious>Back</button>
+                </div>
+                <img [src]="image.value.url" width="50" height="50">
+            </form>
+        </ng-template>
+    </mat-step>
+</mat-stepper>

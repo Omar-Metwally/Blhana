@@ -1,0 +1,46 @@
+<!-- <mat-form-field [class]="class" [style]="style" appearance="outline">
+  <mat-label>{{label}}</mat-label>
+  <input matInput [formControl]="control" [type]="type" [placeholder]="placeholder" [mask]="format"
+    [dropSpecialCharacters]="false" [class.is-invalid]="control.errors" required
+    [ngClass]="{'valid-input': !control.errors}"
+    [type]="hide ? 'password' : 'text'">
+  <button *ngIf="type === 'password'" type="button" mat-icon-button matSuffix (click)="hide = !hide"
+    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </button>
+  <mat-icon *ngIf="icon != '' " mat-icon matSuffix>{{icon}}</mat-icon>
+  <mat-error *ngIf="control.errors?.['pattern'] && type === 'email'">At the moment we only accept Gmail, Yahoo, Hotmail,
+    Outlook</mat-error>
+  <mat-error *ngIf="control.errors?.['pattern'] && type === 'password'">Password must be at least 8 characters and
+    contains 1 letter & 1 number</mat-error>
+  <mat-error *ngIf="control.errors?.['required']">Please enter your {{label}}</mat-error>
+  <mat-error *ngIf="control.errors?.['uniqueEmail']">This email is taken</mat-error>
+</mat-form-field> -->
+<div [ngSwitch]="type">
+<mat-form-field style="width: 100%;" *ngSwitchDefault [class]="class" [style]="style" appearance="outline" >
+  <mat-label>{{label}}</mat-label>
+  <input matInput [formControl]="control" [type]="type" [placeholder]="placeholder" [suffix]="suffix" [prefix]="prefix" [mask]="format" 
+    
+    [dropSpecialCharacters]="false" [class.is-invalid]="control.errors"
+    [ngClass]="{'valid-input': !control.errors}" [type]="hide ? 'password' : 'text'">
+
+  <button *ngIf="type === 'password'" type="button" mat-icon-button matSuffix (click)="hide = !hide"
+    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </button>
+
+  <mat-icon *ngIf="icon !== ''" mat-icon matSuffix>{{icon}}</mat-icon>
+
+  <mat-error *ngIf="control.errors?.['pattern']" [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'email'">At the moment we only accept Gmail, Yahoo, Hotmail, Outlook</ng-container>
+    <ng-container *ngSwitchCase="'password'">Password must be at least 8 characters and contains 1 letter & 1
+      number</ng-container>
+  </mat-error>
+
+  <mat-error *ngIf="control.errors?.['min']">The {{label}} must be more than {{control.errors?.['min'].min}}</mat-error>
+  <mat-error *ngIf="control.errors?.['max']">The {{label}} must be less than {{control.errors?.['max'].max}}</mat-error>
+
+  <mat-error *ngIf="control.errors?.['required']">Please enter your {{label}}</mat-error>
+  <mat-error *ngIf="control.errors?.['uniqueEmail']">This email is taken</mat-error>
+</mat-form-field>
+</div>

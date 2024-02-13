@@ -1,0 +1,47 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+    <div class="card1">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-2 fs-4 p-2 pe-0">
+                <h2 class="mb-0">Log In</h2>
+                <button type="button" tabindex="-1" class="mb-0" mat-icon-button matSuffix (click)="closeLoginPopUp()">
+                <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="mb-2">
+                <app-input [control]="email" style="width: 100%;" type="email" placeholder="user@example.com" icon="alternate_email" label="Email"></app-input>
+            </div>
+            <div class="mb-2">
+                <app-input [control]="password" style="width: 100%;" type="password" label="Password"></app-input>
+            </div>
+            <!-- <mat-form-field style="width: 100%" class="mb-2" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [class.is-invalid]="submitted && loginForm.get('email')?.errors"
+                    placeholder="user@example.com" formControlName="email" required>
+                <mat-icon mat-icon matSuffix>alternate_email</mat-icon>
+                <mat-error *ngIf="loginForm.get('email')?.invalid">Please Enter your email</mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 100%" class="mb-2" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input type="password" [class.is-invalid]="submitted && loginForm.get('email')?.errors"
+                    formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="loginForm.get('password')?.invalid">Please Enter your password</mat-error>
+            </mat-form-field> -->
+            <div class="form-floatin" *ngIf="errorMessages.length > 0">
+                <app-validation-messages [errorMessages]="errorMessages"></app-validation-messages>
+                <a class="btn btn-link" (click)="resendEmailConfirmationLink()"
+                    *ngIf="errorMessages[0].includes('Please confirm your email')">
+                    Click here to resend email confirmation link in case you didn't receive it.
+                </a>
+            </div>
+            <div class="text-center">
+                <button style="width: 100%;" type="submit" class="btn mt-3 fs-6">Login</button>
+                <a href="#" class="nav-link pt-4">Forgot Password?</a>
+                <div class="d-lg-block bottom"> Don’t Have an Account? <a href="#" class="d-lg-inline sign">Signup</a></div>
+            </div>
+        </div>
+    </div>
+</form>

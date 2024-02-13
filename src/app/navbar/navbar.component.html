@@ -1,0 +1,141 @@
+<!--
+  <header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="nav-brand">
+        <img src="./assets/images/logo.png" class="me-3" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" (click)="toggleCollapsed()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [ngClass]="{'collapse': collapsed}">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}">Home</a>
+          </li>
+          <ng-container *ngIf="accountService.user$ | async">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/play" routerLinkActive="active">Play</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/meal/add-meal-form" routerLinkActive="active">Meal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/account/chief-register" routerLinkActive="active">Chief Signup</a>
+            </li>
+            <li class="nav-item" *appUserHasRole="['Admin']">
+              <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+            </li>
+          </ng-container>
+        </ul>
+
+        <ul class="navbar-nav" *ngIf="(accountService.user$ | async) === null">
+          <li class="nav-item">
+            <a class="btn btn-secondary mx-2" routerLink="/account/register" routerLinkActive="active">
+              Create account
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-secondary mx-2" routerLink="/account/chief-register" routerLinkActive="active">
+              Chief Signup
+            </a>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-secondary" (click)="openDialog('500mx', '250ms')">Login</button>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center" *ngIf="(accountService.user$ | async) as user">
+          <a class="text-white" style="text-decoration: none; cursor: pointer;">
+            Hi <span class="h5 text-warning">{{user.username | titlecase}}</span>
+          </a>
+          <a class="btn btn-secondary ms-2" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+-->
+<nav class="navbar navbar-expand-lg p-3 text-nowrap">
+  <div class="container d-lg-flex">
+    <a class="navbar-brand col-lg-3" href="#">Logo</a>
+    <button class="navbar-toggler" type="button" (click)="toggleCollapsed()">
+      <mat-icon>list</mat-icon>
+    </button>
+    <div style="line-height: 0;" class="collapse navbar-collapse align-items-center fw-normal"
+      [ngClass]="{'collapse': collapsed}">
+      <ul class="navbar-nav mb-3 mb-lg-0 col-lg-6">
+        <li class="nav-item">
+          <a class="nav-link nav-edit ps-3 pe-3 me-lg-2" [routerLinkActiveOptions]={exact:true} routerLink="/"
+            routerLinkActive="active">How It Works</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-edit ps-3 pe-3 me-lg-2" routerLink="/about-us" routerLinkActive="active">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-edit ps-3 pe-3 me-lg-2" routerLink="/become-a-chief" >Become A Chef</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 col-lg-3" *ngIf="(accountService.user$ | async) === null">
+        <li class="nav-item2">
+          <div [ngClass]="{'collapsed-margin': !collapsed}" class="nav-link p-2 ps-3">
+            <div class="search-box">
+              <input type="text" class="search-input" placeholder="Start Looking For Something!">
+              <a class="search-btn align-items-center" href="#">
+                <mat-icon class="align-items-center">search</mat-icon>
+              </a>
+            </div>
+          </div>
+        <li class="nav-item2">
+          <div [ngClass]="{'collapsed-margin': !collapsed}" class="nav-link p-2 pe-3">
+            <a href=""><mat-icon>shopping_cart</mat-icon></a>
+          </div>
+        </li>
+
+        <li class="nav-item2">
+          <a class="nav-link nav-loging ps-3 pe-3 btn" [ngClass]="{'collapsed-margin': !collapsed}"
+            (click)="login('500mx', '250ms')">Log in</a>
+        </li>
+        <li class="nav-item2">
+          <a class="nav-link nav-sign ps-3 pe-3 ms-lg-2 btn" [ngClass]="{'collapsed-margin': !collapsed}"
+            (click)="signup('500mx', '250ms')">Sign Up</a>
+        </li>
+      </ul>
+      <ul style="flex-direction: row-reverse;" class="navbar-nav ms-auto mb-2 mb-lg-0 col-lg-3"
+        *ngIf="(accountService.user$ | async) as user">
+        <div class="align-items-center">
+          <!-- <a class="text-black bold" style="text-decoration: none; cursor: pointer;">
+          Hi <span class="text-warning">{{user.username | titlecase}}</span>
+        </a>
+        <a class="nav-link nav-sign ps-3 pe-3 ms-lg-2 btn" (click)="logout()">Logout</a>
+        <a class="nav-link" *appUserHasRole="['Chief']" routerLink="/meal/add-meal" routerLinkActive="active">Create
+          meal</a> -->
+          <button mat-button [matMenuTriggerFor]="menu">My Account
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item>
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voice mail</span>
+            </button>
+            <mat-divider></mat-divider>
+            <a mat-menu-item routerLink="/profile">
+              <mat-icon>account_circle</mat-icon>
+              <span>My Account</span>
+            </a>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>keyboard_backspace</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
