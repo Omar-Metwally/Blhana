@@ -87,9 +87,9 @@ $my-app-theme: mat.define-light-theme(
   border-radius: 5px;
 }
 
-*{
-  line-height: normal;
-}
+// *{
+//   line-height: ;
+// }
 // .mat-step-icon{
 //   line-height: 0;
 // }
@@ -190,3 +190,18 @@ $my-app-theme: mat.define-light-theme(
 //   background-color: white;
 //   border-radius: 10px;
 // }
+
+.mat-horizontal-stepper-header-container{
+  margin-right: 5rem;
+  margin-left: 5rem;
+}
+
+// .transparent-dialog .mat-dialog-container {
+//   background-color: transparent !important;
+//   box-shadow: none !important;
+// }
+
+
+.transparent-dialog .mat-dialog-container {
+  opacity: 1 !important;
+}

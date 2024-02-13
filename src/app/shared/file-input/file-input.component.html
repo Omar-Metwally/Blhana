@@ -1,6 +1,3 @@
-<label for="formFileLg" class="form-label">{{control.value.name}}</label>
-<input class="form-control form-control-lg" id="formFileLg" type="file" [formControl]="control" (change)="storeFile($event)">
-
 <ng-container>
    <div 
      app-event-blocker
@@ -10,9 +7,12 @@
      (dragleave)="isDragover = false"
      (mouseleave)="isDragover = false"
      (drop)="storeFile($event)"
-     class="m-1 w-100 p-5 rounded text-center"
+     class="m-1 my-auto w-100 p-5 rounded text-center"
      style="cursor: pointer; border: 1px lined #f7f8fa; transition: all 0.5s ease-in-out;">
-     <h4>Drop your image here</h4>
+     <h4 class="my-auto text-muted">Drag and Drop your image here or 
+      <a class="text-reset" (click)="fileInput.click()">Browse</a>
+       it</h4>
    </div>
  </ng-container>
+ <input style="display: none;" #fileInput type="file" [formControl]="control" (change)="storeFile($event)">
  <img [src]="control.value.url" width="500" height="500">

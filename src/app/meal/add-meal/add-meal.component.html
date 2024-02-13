@@ -27,8 +27,8 @@
 
 <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!" [linear]="true"
     labelPosition="bottom">
-    <mat-step [optional]="false" [completed]="isMealAdded" label="">
-        <ng-template matStepLabel>Dish Profile</ng-template>
+    <mat-step [optional]="false" [completed]="isMealAdded" label="Dish Profile" state="dish">
+        <!-- <ng-template matStepLabel>Dish Profile</ng-template> -->
         <ng-template matStepContent>
             <form [formGroup]="addMealForm" (ngSubmit)="mealForm()">
                 <app-input class="me-1" [control]="title" type="text" label="Dish Title"></app-input>
@@ -39,7 +39,7 @@
                 <app-chips-auto-complete-input [control]="tags" type="text" label="Tags"
                     [options]="tagsOptions"></app-chips-auto-complete-input>
                 <mat-form-field style="width: 100%;" appearance="outline">
-                    <mat-label>Message</mat-label>
+                    <mat-label>Description</mat-label>
                     <textarea [formControl]="description" matInput #message maxlength="256"
                         placeholder="Ex. I need help with..."></textarea>
                     <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
@@ -52,8 +52,7 @@
             </form>
         </ng-template>
     </mat-step>
-    <mat-step [stepControl]="addMealOptionForm" label="">
-        <ng-template matStepLabel>Dish Options</ng-template>
+    <mat-step [stepControl]="addMealOptionForm" label="Dish Options" state="dish-option">
         <ng-template matStepContent>
             <form [formGroup]="addMealOptionForm" (ngSubmit)="mealOptionForm()">
 
@@ -111,4 +110,10 @@
             </form>
         </ng-template>
     </mat-step>
+    <ng-template matStepperIcon="dish">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="dish-option">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
 </mat-stepper>

@@ -15,7 +15,7 @@ export interface MealOptionPut$Params {
 export function mealOptionPut(http: HttpClient, rootUrl: string, params?: MealOptionPut$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
   const rb = new RequestBuilder(rootUrl, mealOptionPut.PATH, 'put');
   if (params) {
-    rb.body(params.body, 'application/*+json');
+    rb.body(params.body, 'multipart/form-data');
   }
 
   return http.request(

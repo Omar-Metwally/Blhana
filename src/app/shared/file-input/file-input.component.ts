@@ -67,10 +67,13 @@ export class FileInputComponent {
     if (!file || file.type !== 'image/jpeg') {
       this.control.reset();
     } else {
+      console.log(true)
       const fileHandle: FileHandle = {
         file: file,
         url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file))
       }
+      console.log(fileHandle)
+
 
       // const reader = new FileReader();
       // reader.onload = (e: any) => {
@@ -95,15 +98,16 @@ export class FileInputComponent {
     this.isDragover = false;
   }
 
-  @HostListener('drop', ['$event'])
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    this.isDragover = false;
-    const files = event.dataTransfer?.files;
-    if (files && files.length > 0) {
-      this.control.setValue(files[0]);
-    }
-  }
+  // @HostListener('drop', ['$event'])
+  // onDrop(event: DragEvent) {
+  //   event.preventDefault();
+  //   this.isDragover = false;
+  //   const files = event.dataTransfer?.files;
+  //   if (files && files.length > 0) {
+  //     this.control.setValue(files[0]);
+  //     console.log(true,files[0])
+  //   }
+  // }
 
   /*async uploadFile() {
     //this.uploadForm.disable();
