@@ -34,7 +34,7 @@ import { LoadingSpinnerComponent } from 'src/app/shared/loading-spinner/loading-
   standalone: true,
   templateUrl: './add-meal.component.html',
   styleUrl: './add-meal.component.css',
-  imports: [MatIconModule ,CommonModule, MatButtonToggleModule, AsyncPipe, MatButtonModule, MatStepperModule, ChiefRegisterComponent, FormsModule, MatFormFieldModule, MatInputModule, SharedModule, SelectInputComponent, ChipsAutoCompleteInputComponent, FileInputComponent]
+  imports: [MatIconModule, CommonModule, MatButtonToggleModule, AsyncPipe, MatButtonModule, MatStepperModule, ChiefRegisterComponent, FormsModule, MatFormFieldModule, MatInputModule, SharedModule, SelectInputComponent, ChipsAutoCompleteInputComponent, FileInputComponent]
 })
 export class AddMealComponent {
 
@@ -230,8 +230,6 @@ export class AddMealComponent {
         panelClass: '',
         disableClose: true
       });
-  
-      console.log(true)
       this.mealsService.mealsPost$Response(createMealRequest).subscribe({
         next: (response: HttpResponse<any>) => {
           // dialogRef.close()
@@ -285,7 +283,6 @@ export class AddMealComponent {
     };
 
     const action = mealSizeActions[this.mealSize.value as MealSizeValues];
-    console.log(action)
     if (action) {
       this.putMealOption();
     } else {
@@ -310,8 +307,6 @@ export class AddMealComponent {
       panelClass: '',
       disableClose: true
     });
-
-    console.log(true)
     this.mealOptionService.mealOptionPost(createMealOptionRequest).subscribe({
       next: (mealOptionID) => {
 
@@ -367,7 +362,6 @@ export class AddMealComponent {
         else if (this.mealSize.value === 2) {
           this.isLargeMealOptionAdded = true
         }
-        console.log(this.meal)
       },
       error: error => {
         if (error.error.errors) {
@@ -379,78 +373,78 @@ export class AddMealComponent {
     })
   }
 
-  addMeal() {
-    if (!this.isMealAdded) {
-      if (this.addMealForm.valid) {
-        const createMealRequest: MealsPost$Params = {
-          body: {
-            'name': this.addMealForm.value.title,
-            'description': this.addMealForm.value.description,
-            'mealCategory': +this.addMealForm.value.category.id,
-            'mealSpiceLevel': +this.addMealForm.value.spiceLevel.id,
-            'tagsID': this.addMealForm.value.tags.map((o: Option) => o.id),
-          }
-        }
-        this.mealsService.mealsPost$Response(createMealRequest,).subscribe({
-          next: (response: HttpResponse<any>) => {
-            this.mealID = response.headers.get('Location');
-            this.isMealAdded = true;
-            this.saveMeal()
-            console.log(this.meal)
-          },
-          error: error => {
-            if (error.error.errors) {
-              this.errorMessages = error.error.errors;
-            } else {
-              this.errorMessages.push(error.error);
-            }
-          }
-        })
-      }
-    }
-  }
+  // addMeal() {
+  //   if (!this.isMealAdded) {
+  //     if (this.addMealForm.valid) {
+  //       const createMealRequest: MealsPost$Params = {
+  //         body: {
+  //           'name': this.addMealForm.value.title,
+  //           'description': this.addMealForm.value.description,
+  //           'mealCategory': +this.addMealForm.value.category.id,
+  //           'mealSpiceLevel': +this.addMealForm.value.spiceLevel.id,
+  //           'tagsID': this.addMealForm.value.tags.map((o: Option) => o.id),
+  //         }
+  //       }
+  //       this.mealsService.mealsPost$Response(createMealRequest,).subscribe({
+  //         next: (response: HttpResponse<any>) => {
+  //           this.mealID = response.headers.get('Location');
+  //           this.isMealAdded = true;
+  //           this.saveMeal()
+  //           console.log(this.meal)
+  //         },
+  //         error: error => {
+  //           if (error.error.errors) {
+  //             this.errorMessages = error.error.errors;
+  //           } else {
+  //             this.errorMessages.push(error.error);
+  //           }
+  //         }
+  //       })
+  //     }
+  //   }
+  // }
 
-  addMealOption() {
-    if (this.addMealOptionForm.valid) {
-      const createMealOptionRequest: MealOptionPost$Params = {
-        body: {
-          'MealID': this.mealID ?? '',
-          'MealSizeOption': this.mealSize.value,
-          'IsAvailable': this.isAvailable.value,
-          'Price': this.price.value,
-          'AvailableQuantity': this.quantity.value,
-          'SaveQuantitySetting': this.saveQuantitySetting.value,
-          'Image': this.image.value
-        }
-      }
+  // addMealOption() {
+  //   if (this.addMealOptionForm.valid) {
+  //     const createMealOptionRequest: MealOptionPost$Params = {
+  //       body: {
+  //         'MealID': this.mealID ?? '',
+  //         'MealSizeOption': this.mealSize.value,
+  //         'IsAvailable': this.isAvailable.value,
+  //         'Price': this.price.value,
+  //         'AvailableQuantity': this.quantity.value,
+  //         'SaveQuantitySetting': this.saveQuantitySetting.value,
+  //         'Image': this.image.value
+  //       }
+  //     }
 
-      this.mealOptionService.mealOptionPost(createMealOptionRequest).subscribe({
-        next: (mealOptionID) => {
+  //     this.mealOptionService.mealOptionPost(createMealOptionRequest).subscribe({
+  //       next: (mealOptionID) => {
 
-          if (this.mealSize.value === 1) {
-            this.isSmallMealOptionAdded = true
-            this.smallMealOptionID = mealOptionID[0]
-          }
-          else if (this.mealSize.value === 2) {
-            this.isMediumMealOptionAdded = true
-            this.mediumMealOptionAdded = mealOptionID[0]
-          }
-          else if (this.mealSize.value === 3) {
-            this.isLargeMealOptionAdded = true
-            this.largeMealOptionAdded = mealOptionID[0]
-          }
-        },
-        error: error => {
+  //         if (this.mealSize.value === 1) {
+  //           this.isSmallMealOptionAdded = true
+  //           this.smallMealOptionID = mealOptionID[0]
+  //         }
+  //         else if (this.mealSize.value === 2) {
+  //           this.isMediumMealOptionAdded = true
+  //           this.mediumMealOptionAdded = mealOptionID[0]
+  //         }
+  //         else if (this.mealSize.value === 3) {
+  //           this.isLargeMealOptionAdded = true
+  //           this.largeMealOptionAdded = mealOptionID[0]
+  //         }
+  //       },
+  //       error: error => {
 
-          if (error.error.errors) {
-            this.errorMessages = error.error.errors;
-          } else {
-            this.errorMessages.push(error.error);
-          }
-        }
-      })
-    }
-  }
+  //         if (error.error.errors) {
+  //           this.errorMessages = error.error.errors;
+  //         } else {
+  //           this.errorMessages.push(error.error);
+  //         }
+  //       }
+  //     })
+  //   }
+  // }
 
   toggleQuantityInput(yes: boolean) {
     if (yes) {
@@ -467,7 +461,7 @@ export class AddMealComponent {
     }
   }
 
-  showProgressSpinnerUntilExecuted(observable: Observable<Object>) {
+  OpenSpinner() {
     let dialogRef: MatDialogRef<MatProgressSpinnerModule> = this.dialog.open(MatProgressSpinnerModule, {
       panelClass: '',
       disableClose: true

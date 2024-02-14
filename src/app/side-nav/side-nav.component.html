@@ -1,4 +1,4 @@
-
+<!-- 
 
 <div class="sidenav-header">
     <button mat-icon-button (click)="collapsed.set(!collapsed())">
@@ -28,5 +28,36 @@
          matListItemIcon
          >{{item.icon}}</mat-icon>
         <span matListItemTitle *ngIf="!sideNavCollapsed()">{{item.label}}</span>
+    </a>
+</mat-nav-list> -->
+
+<div class="sidenav-header" [style.width]="sidenavWidth">
+    <button mat-icon-button (click)="toggleCollapse()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <img
+     [width]="collapsed ? '32' : '100'" 
+    [height]="collapsed ? '32' : '100'"
+    src="/assets/photo/messi.jpeg" />
+    <div class="header-text" *ngIf="!collapsed">
+        <h2>Project</h2>
+        <p>Bl-Hana</p>
+    </div>
+</div>
+<mat-nav-list [style.width]="sidenavWidth">
+    <a  
+        mat-list-item
+        class="menu-item"
+         *ngFor="let item of menuItems"
+          [routerLink]="item.route"
+        routerLinkActive="selected-menu-item"
+        #rla="routerLinkActive"
+        [activated]="rla.isActive"
+         >
+        <mat-icon
+         [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'"
+         matListItemIcon
+         >{{item.icon}}</mat-icon>
+        <span matListItemTitle *ngIf="!collapsed">{{item.label}}</span>
     </a>
 </mat-nav-list>
